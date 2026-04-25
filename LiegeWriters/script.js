@@ -113,16 +113,14 @@ const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const formData = new FormData(contactForm);
         const name = contactForm.querySelector('input[type="text"]').value;
         const email = contactForm.querySelector('input[type="email"]').value;
         const message = contactForm.querySelector('textarea').value;
 
-        // Show success message
-        alert(`Thank you, ${name}! Your message has been sent. We'll contact you at ${email} soon.`);
-
-        // Reset form
-        contactForm.reset();
+        // Create mailto link with form data
+        const subject = encodeURIComponent(`Message from ${name}`);
+        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+        window.location.href = `mailto:liegewriters6000@gmail.com?subject=${subject}&body=${body}`;
     });
 }
 
